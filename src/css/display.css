@@ -1,0 +1,38 @@
+
+.task-item{
+  color:white;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 10px; 
+  border-bottom: 1px solid #ccc; 
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  gap:10px;
+}
+
+.list-greeting{
+  margin-top:0;
+  margin-bottom: 20px;
+}
+
+.task-list{
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-btn{
+  cursor: pointer;
+  background-image: url(./img/delete.png);
+  width: 30px;
+  background-size: cover;
+  border:none;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding:15px;
+  filter: invert(100%);
+}
+
+.accouncement{
+  color:white;
+}

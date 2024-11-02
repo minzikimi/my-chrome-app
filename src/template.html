@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="../src/css/add-task.css" />
+  <link rel="stylesheet" href="../src/css/header.css" />
+  <link rel="stylesheet" href="../src/css/base.css" />
+  <link rel="stylesheet" href="../src/css/display.css" />
+  <link rel="stylesheet" href="../src/css/side-bar.css" />
+
+
+  <script src="../src/accessories/background.js" defer></script>
+  <script src="../src/accessories/clock.js" defer></script>
+  <script src="../src/accessories/name.js" defer></script>
+  <script src="../src/accessories/quotes.js" defer></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Major+Mono+Display&family=Space+Grotesk:wght@300..700&family=Turret+Road:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  <div class="container">
+
+    <header class="app-header">
+      <div class="upper-header">
+        <div class="clock-container">
+          <h2 id="clock"></h2>
+        </div>
+        <div class="app-title">
+          <h1 id="greeting" class="hidden"></h1>
+          <form>
+            <label for="nameInput">Enter your name:</label>
+            <input type="text" id="nameInput" placeholder="Your name">
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+  
+      <div class="quote-container">
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+  
+    <main>
+      <div class="side-menu">
+        <img id="menu-svg" src="../src/img/menu-svgrepo-com.svg">
+        <ul>
+          <li><a href="#" id="todo-btn" class="side-button">To-Do List</a></li>
+          <li><a href="#" id="upcoming-btn" class="side-button">Upcoming Tasks</a></li>
+          <li><a href="#" id="add-task-btn" class="side-button">Add Task</a></li>
+        </ul>
+      </div>
+  
+      <div id="content" class="content">
+         <!-- dynamic contents -->
+      </div>
+
+      <!-- Template for the task form -->
+      <template id="task-form-template">
+        <div class="content-wrapper">
+          <form id="todo-form">
+              <label for="todo-input">New Task:</label>
+              <input type="text" id="todo-input" name="todo-input" placeholder="Write a new task" required>
+
+              <label for="due-date">Due Date:</label>
+              <input type="date" id="due-date" name="due-date">
+
+              <label for="priority">Priority:</label>
+              <select id="priority" name="priority">
+                  <option value="low">Low</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="high">High</option>
+              </select>
+
+              <label for="category">Category:</label>
+              <select id="category" name="category">
+                  <option value="work">Work</option>
+                  <option value="personal" selected>Personal</option>
+              </select>
+
+              <div class="button-wrapper">
+                  <button type="submit" class="submit-btn">Add Task</button>
+              </div>
+          </form>
+        </div>
+      </template>
+
+      <!-- Template for the task list -->
+      <template id="task-list-template">
+        <div class="content-wrapper">
+            <h2 class='list-greeting'>Don't forget to complete your tasks!</h2>
+            <div class='task-list' data-lists>
+              <!-- This is where tasks will be added -->
+
+            </div> 
+        </div>
+      </template>
+
+    </main>
+
+  </div>
+
+  <!-- Main script -->
+  <script src="./index.js" type='module' defer></script>
+
+</body>
+</html>
