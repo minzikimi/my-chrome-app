@@ -53,12 +53,9 @@ const quoteElement = document.querySelector(".quote-container span:first-child")
 const authorElement = document.querySelector(".quote-container span:last-child");
 
 
-function generateQuote() {
+export function generateQuote() {
   const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
   quoteElement.textContent = randomQuote.quote;
   authorElement.textContent = `- ${randomQuote.author}`;
 }
-
-// Initial quote generation
-generateQuote();
 

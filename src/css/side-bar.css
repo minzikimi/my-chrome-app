@@ -2,10 +2,7 @@
   color: white;
 }
 
-#menu-svg{
-  width: 30px;
-  filter: invert(100%);
-}
+
 
 .side-menu {
   padding: 20px;
@@ -60,5 +57,91 @@
 }
 
 #todo-btn{
-  color:rgb(211, 185, 152)
+  color:rgb(211, 185, 152);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .side-menu {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    width: 80%;
+    height: 100vh;
+    background-color: rgba(27, 25, 25, 0.849);
+    transition: 0.3s;
+    z-index: 1000;
+  }
+
+  .side-menu.active {
+    left: 0;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    cursor: pointer;
+  }
+
+  .hamburger {
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    position: relative;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    transition: 0.3s;
+  }
+
+  .hamburger::before {
+    top: -10px;
+  }
+
+  .hamburger::after {
+    top: 10px;
+  }
+
+  .menu-toggle.active .hamburger {
+    background-color: transparent;
+  }
+
+  .menu-toggle.active .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .menu-toggle.active .hamburger::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+}
+
+/* Adjust main content for smaller screens */
+@media screen and (max-width: 480px) {
+  .content-wrapper {
+    padding: 10px;
+  }
+
+  #todo-form input,
+  #todo-form select {
+    width: 100%;
+  }
 }

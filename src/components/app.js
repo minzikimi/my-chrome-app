@@ -13,6 +13,8 @@ class Task {
 
 const TASK_KEY = "tasks";
 
+// const tasks = [];
+
 // Save data to local storage
 function saveDataToLocalStorage(tasks) {
   localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
@@ -24,11 +26,11 @@ function loadFromLocalStorage() {
   return taskJSON ? JSON.parse(taskJSON) : [];
 }
 
-// Add task to array
-function addTaskToList(event) {
+// Handle submit
+export function addTaskToList(event) {
   event.preventDefault();
   
-  const form = document.querySelector("#todo-form");
+  const form = event.target;
   
   const titleValue = form.querySelector("#todo-input").value;
   const dueDateValue = form.querySelector("#due-date").value;
@@ -37,7 +39,7 @@ function addTaskToList(event) {
 
   if (!titleValue.trim() || !dueDateValue.trim()) { 
     alert("Please fill all the fields.");
-    return; // Return if validation fails
+    return;
   }
 
   const newTask = new Task(titleValue, dueDateValue, priorityValue, categoryValue);
@@ -52,65 +54,46 @@ function addTaskToList(event) {
   displayTasks(existingTasks);
 }
 
-// Display tasks on the UI
-// function displayTasks(tasksFromLocalStorage) {
-//   const taskList = document.querySelector("[data-lists]");
-//   taskList.innerHTML = '';
-  
-//   tasksFromLocalStorage.forEach(task => {
-//     const taskItem = document.createElement('div');
-//     taskItem.classList.add("task-item");
-    
-//     const titleSpan = document.createElement("span");
-//     titleSpan.classList.add("task-title");
-//     titleSpan.textContent = task.title;
-
-//     const dateSpan = document.createElement("span");
-//     dateSpan.classList.add("task-date");
-//     dateSpan.textContent = task.dueDate;
-
-//     const categorySpan = document.createElement("span");
-//     categorySpan.classList.add("task-category");
-//     categorySpan.textContent = task.category;
-
-//     const deleteButton = document.createElement("button");
-//     deleteButton.classList.add("delete-btn");
-//     deleteButton.textContent = "삭제";
-//     deleteButton.dataset.id = task.id;
-
-//     taskItem.appendChild(titleSpan);
-//     taskItem.appendChild(dateSpan);
-//     taskItem.appendChild(categorySpan);
-//     taskItem.appendChild(deleteButton);
-
-//     taskList.appendChild(taskItem);
-//   });
-// }
 
 function displayTasks(tasksFromLocalStorage) {
   const taskList = document.querySelector("[data-lists]");
   
-  if (!taskList) {
-      console.error("Task list element not found!");
-      return;
-  }
+  // 기존 태스크 목록 초기화
+  taskList.innerHTML = '';
 
-  taskList.innerHTML = ""; // Clear existing tasks
-  
   tasksFromLocalStorage.forEach(task => {
-    const taskItem = document.createElement("div");
+    const taskItem = document.createElement('div');
     taskItem.classList.add("task-item");
     
-    taskItem.innerHTML = `
-      <span class="task-title">${task.title}</span>
-      <span class="task-date">${task.dueDate}</span>
-      <span class="task-category">${task.category}</span>
-      <button class="delete-btn" data-id="${task.id}">Delete</button>
-    `;
-    
+    const titleSpan = document.createElement("span");
+    titleSpan.classList.add("task-title");
+    titleSpan.textContent = task.title;
+
+    const dateSpan = document.createElement("span");
+    dateSpan.classList.add("task-date");
+    dateSpan.textContent = task.dueDate;
+
+    const categorySpan = document.createElement("span");
+    categorySpan.classList.add("task-category");
+    categorySpan.textContent = task.category;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-btn");
+    deleteButton.dataset.id = task.id;
+   
+
+    // 작업 항목에 추가
+    taskItem.appendChild(titleSpan);
+    taskItem.appendChild(dateSpan);
+    taskItem.appendChild(categorySpan);
+    taskItem.appendChild(deleteButton);
+
+    // 작업 항목을 태스크 리스트에 추가
     taskList.appendChild(taskItem);
   });
 }
+
+
 // Clear input fields
 function clearInput(form) {
   form.reset();
@@ -119,11 +102,8 @@ function clearInput(form) {
 // Remove tasks by ID
 function removeTasks(taskId) {
   let existingTasks = loadFromLocalStorage();
-  
   existingTasks = existingTasks.filter(task => task.id !== taskId);
-  
   saveDataToLocalStorage(existingTasks);
-  
   displayTasks(existingTasks);
 }
 
@@ -160,15 +140,12 @@ function setupDeleteTaskListener() {
 }
 
 export function initApp() {
-  loadAndDisplayTasks(); 
-  setupFormSubmitListener(); 
-  setupDeleteTaskListener(); 
-    // Check if there are any tasks in local storage
-    const existingTasks = loadFromLocalStorage();
-    if (existingTasks.length === 0) {
-        // If no tasks exist, create a default task
-        const defaultTask = new Task("Sample Task", "2024-12-31", "medium", "personal");
-        existingTasks.push(defaultTask);
-        saveDataToLocalStorage(existingTasks); 
-    }
+  loadAndDisplayTasks();
+  setupDeleteTaskListener();
+  const existingTasks = loadFromLocalStorage();
+  if (existingTasks.length === 0) {
+    const defaultTask = new Task("Sample Task", "2024-12-31", "medium", "personal");
+    existingTasks.push(defaultTask);
+    saveDataToLocalStorage(existingTasks);
+  }
 }

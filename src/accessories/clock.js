@@ -1,7 +1,4 @@
-
-
-const clock=document.querySelector("h2#clock");
-
+const clock = document.querySelector("h2#clock");
 
 function getClock() {
   const date = new Date();
@@ -11,5 +8,11 @@ function getClock() {
   
   clock.textContent = `${hours}:${minutes}:${seconds}`;
 }
-getClock();
-setInterval(getClock, 1000);
+
+// Initialize the clock and set an interval to update it every second
+function startClock() {
+  getClock();
+  setInterval(getClock, 1000);
+}
+
+export { startClock };

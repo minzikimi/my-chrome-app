@@ -12,7 +12,7 @@ body {
 }
 
 .container {
-  width: 80%; 
+  width: 1200px; 
   margin: 0 auto; 
 }
 
@@ -36,9 +36,38 @@ main{
   flex-grow: 1; 
   display: flex; 
   justify-content:flex-start 
-
 }
+
+
 
 li #todo{
   border:1px solid white;
+}
+
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+  }
+
+  .content {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 14px; /* Slightly smaller font size for very small screens */
+  }
+
+  .container {
+    padding: 0 10px; /* Less padding on very small screens */
+  }
 }

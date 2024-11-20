@@ -3,12 +3,16 @@
   color:white;
   display: flex; 
   align-items: center; 
-  justify-content: space-between; 
-  padding: 10px; 
+  flex-direction: row;
   border-bottom: 1px solid #ccc; 
   background-color: rgba(255, 255, 255, 0.1);
-  width: 100%;
-  gap:10px;
+  width: 550px;
+  gap:40px;
+
+}
+
+.task-item span{
+  padding:1rem;
 }
 
 .list-greeting{
@@ -19,11 +23,12 @@
 .task-list{
   display: flex;
   flex-direction: column;
+  padding-left:3rem;
 }
 
 .delete-btn{
   cursor: pointer;
-  background-image: url(./img/delete.png);
+  background-image: url(../img/delete.png);
   width: 30px;
   background-size: cover;
   border:none;

@@ -10,21 +10,20 @@
   <link rel="stylesheet" href="../src/css/display.css" />
   <link rel="stylesheet" href="../src/css/side-bar.css" />
 
-
-  <script src="../src/accessories/background.js" defer></script>
-  <script src="../src/accessories/clock.js" defer></script>
-  <script src="../src/accessories/name.js" defer></script>
-  <script src="../src/accessories/quotes.js" defer></script>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Major+Mono+Display&family=Space+Grotesk:wght@300..700&family=Turret+Road:wght@200;300;400;500;700;800&display=swap" rel="stylesheet">
   
 </head>
 <body>
+
+  <div class="menu-toggle">
+    <div class="hamburger"></div>
+  </div>
+  
   <div class="container">
 
-    <header class="app-header">
+    <header>
       <div class="upper-header">
         <div class="clock-container">
           <h2 id="clock"></h2>
@@ -47,7 +46,6 @@
   
     <main>
       <div class="side-menu">
-        <img id="menu-svg" src="../src/img/menu-svgrepo-com.svg">
         <ul>
           <li><a href="#" id="todo-btn" class="side-button">To-Do List</a></li>
           <li><a href="#" id="upcoming-btn" class="side-button">Upcoming Tasks</a></li>

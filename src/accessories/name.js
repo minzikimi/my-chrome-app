@@ -27,18 +27,19 @@ function showNameForm() {
   nameInput.focus();
 }
 
-function init() {
+function initName() {
   const savedUserName = localStorage.getItem(USERNAME_KEY);
   if (savedUserName) {
     updateGreeting(savedUserName);
   } else {
     showNameForm();
   }
+  nameForm.addEventListener("submit", handleNameSubmit);
+  greeting.addEventListener("click", showNameForm);
+
 }
 
-nameForm.addEventListener("submit", handleNameSubmit);
-greeting.addEventListener("click", showNameForm);
 
-init();
+export { initName };
 
 
